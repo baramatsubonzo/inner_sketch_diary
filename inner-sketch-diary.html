@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Reflection App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .bg-orange-100 {
+            background-color: #fed7aa;
+        }
+
+        .bg-orange-50 {
+            background-color: #fff7ed;
+        }
+
+        .bg-orange-300 {
+            background-color: #fdba74;
+        }
+
+        .bg-orange-400 {
+            background-color: #fb923c;
+        }
+
+        .bg-orange-500 {
+            background-color: #f97316;
+        }
+
+        .bg-orange-600 {
+            background-color: #ea580c;
+        }
+
+        .bg-white {
+            background-color: #ffffff;
+        }
+
+        .bg-orange-100-tag {
+            background-color: #ffedd5;
+        }
+
+        .text-amber-900 {
+            color: #451a03;
+        }
+
+        .text-amber-800 {
+            color: #78350f;
+        }
+
+        .text-amber-700 {
+            color: #92400e;
+        }
+
+        .text-amber-600 {
+            color: #d97706;
+        }
+
+        .text-white {
+            color: #ffffff;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .space-y-8 > * + * {
+            margin-top: 2rem;
+        }
+
+        .space-y-12 > * + * {
+            margin-top: 3rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .px-8 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .py-6 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+
+        .ml-4 {
+            margin-left: 1rem;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .max-w-md {
+            max-width: 28rem;
+        }
+
+        .max-w-xs {
+            max-width: 20rem;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .leading-relaxed {
+            line-height: 1.625;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem;
+        }
+
+        .rounded-3xl {
+            border-radius: 1.5rem;
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .transition-colors {
+            transition-property: color, background-color, border-color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .transition-transform {
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .duration-200 {
+            transition-duration: 200ms;
+        }
+
+        .duration-300 {
+            transition-duration: 300ms;
+        }
+
+        .hover\:shadow-xl:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .hover\:bg-white:hover {
+            background-color: #ffffff;
+        }
+
+        .hover\:bg-orange-100:hover {
+            background-color: #fed7aa;
+        }
+
+        .hover\:bg-orange-400:hover {
+            background-color: #fb923c;
+        }
+
+        .hover\:bg-orange-500:hover {
+            background-color: #f97316;
+        }
+
+        .hover\:text-amber-700:hover {
+            color: #92400e;
+        }
+
+        .hover\:text-amber-600:hover {
+            color: #d97706;
+        }
+
+        .hover\:scale-105:hover {
+            transform: scale(1.05);
+        }
+
+        .active\:scale-95:active {
+            transform: scale(0.95);
+        }
+
+        .active\:bg-orange-200:active {
+            background-color: #fbbf24;
+        }
+
+        .active\:bg-orange-500:active {
+            background-color: #f97316;
+        }
+
+        .active\:bg-orange-600:active {
+            background-color: #ea580c;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        /* Animated ellipsis */
+        @keyframes ellipsis {
+            0% { opacity: 0; }
+            25% { opacity: 1; }
+            50% { opacity: 1; }
+            75% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .ellipsis-dot {
+            animation: ellipsis 1.5s infinite;
+            display: inline-block;
+            color: #92400e; /* Darker amber color for better visibility */
+            font-size: 2.5rem; /* Much larger - about 40px */
+            font-weight: bold;
+            line-height: 1;
+            margin: 0 0.125rem; /* Small spacing between dots */
+        }
+
+        .ellipsis-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ellipsis-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .cursor-not-allowed {
+            cursor: not-allowed;
+        }
+
+        .opacity-50 {
+            opacity: 0.5;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .top-6 {
+            top: 1.5rem;
+        }
+
+        .left-6 {
+            left: 1.5rem;
+        }
+
+        .w-80 {
+            width: 20rem;
+        }
+
+        .h-80 {
+            height: 20rem;
+        }
+
+        .aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .border-none {
+            border: none;
+        }
+
+        .resize-none {
+            resize: none;
+        }
+
+        .outline-none:focus {
+            outline: none;
+        }
+
+        .focus\:bg-white:focus {
+            background-color: #ffffff;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .inline-flex {
+            display: inline-flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .space-x-1 > * + * {
+            margin-left: 0.25rem;
+        }
+
+        .w-2 {
+            width: 0.5rem;
+        }
+
+        .h-2 {
+            height: 0.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        textarea {
+            font-family: inherit;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .icon-sm {
+            width: 20px;
+            height: 20px;
+        }
+
+        .icon-xs {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // App state
+        let state = {
+            currentScreen: 1,
+            textInput: '',
+            isListening: false,
+            tags: ['#tired', '#hopeful', '#calm'],
+            savedImages: [
+                'images/reflection.png',
+                'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop'
+            ],
+            currentImage: 'images/reflection.png'
+        };
+
+        let generatingTimer = null;
+
+        // SVG Icons
+        const icons = {
+            chevronLeft: '<svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>',
+            mic: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>',
+            edit3: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>',
+            edit3Xs: '<svg class="icon icon-xs" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>',
+            x: '<svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+        };
+
+        // Generate random image
+        function generateRandomImage() {
+            const images = [
+                'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop'
+            ];
+            return images[Math.floor(Math.random() * images.length)];
+        }
+
+        // Update state and re-render
+        function setState(updates) {
+            state = { ...state, ...updates };
+            render();
+        }
+
+        // Render the appropriate screen
+        function render() {
+            const app = document.getElementById('app');
+            
+            switch(state.currentScreen) {
+                case 1:
+                    app.innerHTML = renderScreen1();
+                    break;
+                case 2:
+                    app.innerHTML = renderScreen2();
+                    break;
+                case 3:
+                    app.innerHTML = renderScreen3();
+                    break;
+                case 4:
+                    app.innerHTML = renderScreen4();
+                    break;
+                case 5:
+                    app.innerHTML = renderScreen5();
+                    startGeneratingTimer();
+                    break;
+                case 6:
+                    app.innerHTML = renderScreen6();
+                    break;
+                case 7:
+                    app.innerHTML = renderScreen7();
+                    break;
+                case 8:
+                    app.innerHTML = renderScreen8();
+                    break;
+                case 9:
+                    app.innerHTML = renderScreen9();
+                    break;
+            }
+        }
+
+        // Screen 1: Top Page
+        function renderScreen1() {
+            return `
+                <div class="min-h-screen bg-orange-100 flex items-center justify-center p-6">
+                    <div class="w-full max-w-md">
+                        <button 
+                            onclick="setState({currentScreen: 2})"
+                            class="w-80 h-80 mx-auto bg-orange-50 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 active:scale-95"
+                        >
+                            <div class="text-center">
+                                <h1 class="text-2xl font-medium text-amber-900 leading-relaxed">
+                                    WHAT'S<br />
+                                    ON<br />
+                                    YOUR MIND
+                                </h1>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 2: Selecting Input Page
+        function renderScreen2() {
+            return `
+                <div class="min-h-screen bg-orange-100 flex flex-col items-center justify-center p-6 gap-8">
+                    <div class="w-full max-w-md space-y-6">
+                        <div class="text-center mb-12">
+                            <h2 class="text-2xl font-medium text-amber-900 mb-2">Hi, Shota</h2>
+                            <p class="text-xl text-amber-800">How are you feeling?</p>
+                        </div>
+                        
+                        <button 
+                            onclick="setState({currentScreen: 3})"
+                            class="w-full bg-orange-50 py-6 px-8 rounded-3xl flex items-center justify-center gap-3 text-amber-900 font-medium"
+                        >
+                            ${icons.mic}
+                            Speak
+                        </button>
+                        
+                        <button 
+                            onclick="setState({currentScreen: 4})"
+                            class="w-full bg-orange-50 py-6 px-8 rounded-3xl flex items-center justify-center gap-3 text-amber-900 font-medium"
+                        >
+                            ${icons.edit3}
+                            Write
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 3: Listening Page
+        function renderScreen3() {
+            return `
+                <div class="min-h-screen bg-orange-100 relative">
+                    <button 
+                        onclick="setState({currentScreen: 2})"
+                        class="absolute top-6 left-6 text-amber-900 hover:text-amber-700 transition-colors"
+                    >
+                        ${icons.chevronLeft}
+                    </button>
+                    <div class="flex flex-col items-center justify-center min-h-screen p-6">
+                        <div class="w-full max-w-md text-center space-y-12">
+                            <h2 class="text-2xl font-medium text-amber-900">I'm listening</h2>
+                            <p class="text-lg text-amber-800">TAP TO PAUSE</p>
+                            <div class="w-full max-w-xs mx-auto">
+                                <button 
+                                    onclick="setState({currentScreen: 5})"
+                                    class="w-full py-4 px-8 rounded-full font-medium transition-all duration-200 text-white bg-orange-400 hover:bg-orange-500 active:bg-orange-600"
+                                >
+                                    FINISHED
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 4: Writing Page
+        function renderScreen4() {
+            const trimmedText = state.textInput.trim();
+            const wordCount = trimmedText === '' ? 0 : trimmedText.split(/\s+/).length;
+            
+            return `
+                <div class="min-h-screen bg-orange-100 relative">
+                    <button 
+                        onclick="setState({currentScreen: 2})"
+                        class="absolute top-6 left-6 text-amber-900 hover:text-amber-700 transition-colors"
+                    >
+                        ${icons.chevronLeft}
+                    </button>
+                    <div class="flex flex-col items-center justify-center min-h-screen p-6">
+                        <div class="w-full max-w-md space-y-8">
+                            <textarea
+                                id="textInput"
+                                oninput="handleTextInput(this.value)"
+                                placeholder="What's on your mind..."
+                                class="w-full h-80 p-6 bg-orange-50 rounded-3xl border-none resize-none text-amber-900 placeholder-amber-600 outline-none focus:bg-white transition-colors text-lg"
+                                wrap="soft"
+                                rows="10"
+                                cols="30"
+                            >${state.textInput}</textarea>
+                            <div class="flex items-center justify-between">
+                                <span id="wordCount" class="text-sm text-amber-700">${wordCount}/200 words</span>
+                                <button 
+                                    id="submitButton"
+                                    onclick="handleSubmit()"
+                                    class="py-4 px-8 rounded-full font-medium transition-all duration-200 text-white bg-orange-400 hover:bg-orange-500 active:bg-orange-600 ${!state.textInput.trim() ? 'opacity-50 cursor-not-allowed' : ''}"
+                                    ${!state.textInput.trim() ? 'disabled' : ''}
+                                >
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 5: Generating Picture Page
+        function renderScreen5() {
+            return `
+                <div class="min-h-screen bg-orange-100 flex items-center justify-center p-6">
+                    <div class="text-center space-y-6">
+                        <h2 class="text-xl font-medium text-amber-900">Thanks for sharing</h2>
+                        <div>
+                            <p class="text-lg text-amber-800">Turning your day into a picture</p>
+                            <div class="mt-4">
+                                <span class="ellipsis-dot">.</span><span class="ellipsis-dot">.</span><span class="ellipsis-dot">.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 6: Open Picture Page
+        function renderScreen6() {
+            return `
+                <div class="min-h-screen bg-orange-100 flex flex-col items-center justify-center p-6">
+                    <div class="w-full max-w-md text-center space-y-12">
+                        <div class="space-y-4">
+                            <h2 class="text-2xl font-medium text-amber-900">Your picture is ready</h2>
+                            <p class="text-lg text-amber-800">A moment generated from your day</p>
+                        </div>
+                        <div class="w-full max-w-xs mx-auto">
+                            <button 
+                                onclick="setState({currentScreen: 7})"
+                                class="w-full py-4 px-8 rounded-full font-medium transition-all duration-200 text-white bg-orange-400 hover:bg-orange-500 active:bg-orange-600"
+                            >
+                                OPEN
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 7: Picture Page
+        function renderScreen7() {
+            return `
+                <div class="min-h-screen bg-orange-100 flex flex-col items-center justify-center p-6">
+                    <div class="w-full max-w-md space-y-8">
+                        <div class="bg-orange-50 rounded-3xl p-6 aspect-square flex items-center justify-center">
+                            <img 
+                                src="${state.currentImage}" 
+                                alt="Generated memory" 
+                                class="w-full h-full object-cover rounded-2xl"
+                            />
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-wrap gap-3">
+                                ${state.tags.map((tag, index) => `
+                                    <span class="inline-flex items-center gap-1 bg-orange-100-tag text-amber-800 px-4 py-2 rounded-full text-sm font-medium">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <button class="text-amber-800 hover:text-amber-600 transition-colors ml-4">
+                                ${icons.edit3Xs}
+                            </button>
+                        </div>
+                        
+                        <button 
+                            onclick="setState({currentScreen: 8})"
+                            class="w-full py-4 px-8 rounded-full font-medium transition-all duration-200 text-white bg-orange-400 hover:bg-orange-500 active:bg-orange-600"
+                        >
+                            SAVE
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 8: Saved Memories Page
+        function renderScreen8() {
+            return `
+                <div class="min-h-screen bg-orange-100 flex flex-col items-center justify-center p-6">
+                    <div class="w-full max-w-md text-center space-y-12">
+                        <h2 class="text-2xl font-medium text-amber-900">Saved to your memories</h2>
+                        <div class="w-full max-w-xs mx-auto">
+                            <button 
+                                onclick="setState({currentScreen: 9})"
+                                class="w-full py-4 px-8 rounded-full font-medium transition-all duration-200 text-white bg-orange-400 hover:bg-orange-500 active:bg-orange-600"
+                            >
+                                VIEW
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Screen 9: Memories Page
+        function renderScreen9() {
+            return `
+                <div class="min-h-screen bg-orange-100 p-6">
+                    <div class="w-full max-w-md mx-auto">
+                        <div class="flex items-center justify-between mb-8">
+                            <h2 class="text-2xl font-medium text-amber-900">Your memories</h2>
+                            <button 
+                                onclick="setState({currentScreen: 1})"
+                                class="text-amber-800 hover:text-amber-600 transition-colors"
+                            >
+                                ${icons.x}
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            ${state.savedImages.map((image, index) => `
+                                <div class="aspect-square bg-orange-50 rounded-2xl overflow-hidden">
+                                    <img 
+                                        src="${image}" 
+                                        alt="Memory ${index + 1}" 
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                                    />
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Handle text input
+        function handleTextInput(value) {
+            // Update state without re-rendering
+            state.textInput = value;
+            
+            // Count words
+            const trimmedText = value.trim();
+            const wordCount = trimmedText === '' ? 0 : trimmedText.split(/\s+/).length;
+            
+            // Check if we're over 200 words
+            if (wordCount > 200) {
+                // Get the first 200 words
+                const words = trimmedText.split(/\s+/);
+                const limitedWords = words.slice(0, 200);
+                const limitedText = limitedWords.join(' ');
+                
+                // Update the textarea value directly
+                const textarea = document.getElementById('textInput');
+                if (textarea) {
+                    textarea.value = limitedText;
+                    state.textInput = limitedText;
+                }
+            }
+            
+            // Update word count display without re-rendering
+            const wordCountElement = document.getElementById('wordCount');
+            if (wordCountElement) {
+                const currentWordCount = state.textInput.trim() === '' ? 0 : state.textInput.trim().split(/\s+/).length;
+                wordCountElement.textContent = `${currentWordCount}/200 words`;
+            }
+            
+            // Update submit button state
+            const submitButton = document.getElementById('submitButton');
+            if (submitButton) {
+                if (state.textInput.trim()) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            }
+        }
+
+        // Handle submit
+        function handleSubmit() {
+            if (state.textInput.trim()) {
+                setState({
+                    currentImage: generateRandomImage(),
+                    currentScreen: 5
+                });
+            }
+        }
+
+        // Start generating timer
+        function startGeneratingTimer() {
+            if (generatingTimer) {
+                clearTimeout(generatingTimer);
+            }
+            generatingTimer = setTimeout(() => {
+                setState({ currentScreen: 6 });
+            }, 3000);
+        }
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>
